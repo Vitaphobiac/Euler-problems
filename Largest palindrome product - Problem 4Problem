@@ -1,0 +1,59 @@
+#include <iostream>
+#include <string>
+#include <list>
+
+int x = 999;
+int y = 999;
+int z; //product of x and y
+int num; //number being reversed
+int rnum = 0; //Reversed number
+int i = 1; //length of num and reverse loop number
+int t = 1; //last digit of num
+int p; //variable for palindrome list
+int c; //checks if the last number was higher or lower
+
+
+int main()
+{
+	std::list <int> listp; //list for palindrome numbers
+	while (x >= 1)
+	{
+		while (y >= 1)
+		{
+			do //palindrome checker
+			{
+				z = x * y;
+				num = z;
+				std::string snum = std::to_string(num); //saves num as a string
+				i = snum.size(); //gets the length of num, the loop number for reversal
+				do
+				{
+					rnum = rnum * 10;
+					t = num % 10; //get last digit of num
+					rnum = (rnum + t); //add last digit to rnum
+					num = num / 10; //go to next digit in num
+					i--;
+				} while (i >= 1); //do this for the length of num
+				if (z == rnum) //saves the number in a list if it is a palindrome number
+				{
+					listp.push_back(z);
+				}
+				rnum = 0; //resets values
+			} while (i >= 1);
+			y--;
+		}
+		x--;
+		y = 999;
+	}
+	c = 0;
+	for (int p : listp)
+	{
+		if (p > c) //if the number is larger than the last one, it gets saved as the new last number
+		{
+			c = p;
+		}
+	}
+	std::cout << c << std::endl; //displays the largest palindrome number
+	//std::cout << listp.size() << std::endl; //displays amount of palindrome numbers
+	return 0;
+}
