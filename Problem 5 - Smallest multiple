@@ -1,0 +1,42 @@
+#include <iostream>
+#include <list>
+
+long double num; //solveable number
+int d; //divisor
+int i = 2; //start of divisors
+//int c = 0; //goes through list to check for real numbers
+double t = 0; //subtracting number for d
+long int x; //checks against r for real numbers
+std::list <int> listd; //list of divisors
+long double r; // checks if its a real number
+long long int s; //solution in long long int
+
+//This program breaks with number above 22, since double numbers can't handle the numbers in the calculation and go negative, making the program loop forever
+int main()
+{
+	std::cout << "Input number to calculate:" << std::endl;
+	std::cin >> d; //user input for max number of divisors
+	do //fills list from 2 till num
+	{
+		listd.push_back(i);
+		i++;
+	} while (i <= d);
+
+	do //loops until the solution has been found
+	{
+		num += d; //num inscreased bythe initial divisor
+		t = d; //putting the divisor in t for subtraction later
+		do
+		{
+			r = num / t; //dividing by the subtracting t to check if r is a real number later
+			t--;
+			x = r; //putting double r in int x
+			if (t == 0)
+			{
+				s = num;
+				std::cout << "The number that can be evenly divided from 1 to " << d << ":\n" << s << std::endl;
+			}
+		} while (r == x && t > 0); //continues while r (num divised by t) is a real number
+	} while (t > 0); //continues until every number from t is a real number
+	return 0;
+}
