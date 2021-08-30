@@ -1,0 +1,46 @@
+#include <iostream>
+#include <math.h>
+#include <list>
+
+int input;
+long long int x; //Squares
+long long int y; //adds up all Squares
+long long int z; //everything added up to be squared
+long long int s; //z squared
+long long int a; //s - y
+std::list <int> lnum;
+
+class powers {
+	public:
+		void list();
+};
+
+void powers::list() {
+	int i = 1;
+	do
+	{
+		lnum.push_back(i);
+		i++;
+	} while (i <= input);
+	for (int p1 : lnum)
+	{
+		x = pow(p1, 2);
+		y += x;
+		std::cout << "i=" << p1 << ":" << x << "\n";
+		std::cout << y << "\n";
+	}
+	for (int p2 : lnum)
+	{
+		z += p2;
+	}
+	s = pow(z, 2);
+	std::cout << s - y << std::endl;
+}
+int main()
+{
+	powers inputlist;
+	std::cin >> input;
+	inputlist.list();
+	//std::cout << sqrt(input);
+	return 0;
+}
